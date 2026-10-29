@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Parque de Atracciones 3D</title>
+    <link rel="stylesheet" href="estilos/estilos.css?v=6">
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+    <header id="hud">
+        <strong>Parque de Atracciones 3D</strong>
+        <span>Arrastra para orbitar. Usa la rueda para acercar o alejar.</span>
+        <span>Teclas 1-6: enfocar atracciones. Tecla 4: vista general.</span>
+        <span>Espacio: pausar. Teclas + / -: cambiar velocidad. <b id="v"></b></span>
+    </header>
+    <aside id="control-panel" aria-label="Panel de control del parque">
+        <button id="control-toggle" type="button" aria-label="Mostrar controles" aria-expanded="false" aria-controls="control-content">
+            <span>Controles del parque</span>
+            <span class="control-arrow" aria-hidden="true"></span>
+        </button>
+        <div id="control-content" aria-hidden="true" inert>
+            <section aria-labelledby="rides-title">
+                <h2 id="rides-title">Atracciones</h2>
+                <div class="ride-controls">
+                    <button type="button" data-camera-view="1" aria-pressed="false">Noria</button>
+                    <button type="button" data-camera-view="2" aria-pressed="false">Carrusel</button>
+                    <button type="button" data-camera-view="3" aria-pressed="false">Barco vikingo</button>
+                    <button type="button" data-camera-view="5" aria-pressed="false">Torre de caída</button>
+                    <button type="button" data-camera-view="6" aria-pressed="false">Trencito</button>
+                    <button type="button" data-camera-view="4" aria-pressed="true">Vista general</button>
+                </div>
+            </section>
+            <section aria-labelledby="schedule-title">
+                <h2 id="schedule-title">Horario del parque</h2>
+                <div class="schedule-time">
+                    <label for="hora">Hora</label>
+                    <output id="hora-actual" for="hora">17:00</output>
+                </div>
+                <input id="hora" type="range" min="0" max="24" step="0.01" value="17"
+                    aria-label="Hora del día" aria-describedby="hora-actual">
+                <div class="schedule-labels" aria-hidden="true">
+                    <span>00:00</span>
+                    <span>06:00</span>
+                    <span>12:00</span>
+                    <span>18:00</span>
+                    <span>24:00</span>
+                </div>
+                <button id="reproducir-horario" type="button" aria-pressed="false">Iniciar día</button>
+                <p class="schedule-hint">Un día completo cada 4 minutos</p>
+            </section>
+        </div>
+    </aside>
+    <script type="module" src="javascript/main.js"></script>
+</body>
+
+</html>

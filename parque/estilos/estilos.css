@@ -1,0 +1,212 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    var(--cielo-superior, #1d1b4a) 0%,
+    var(--cielo-medio, #7a3b6b) 40%,
+    var(--cielo-horizonte, #e8884a) 72%,
+    var(--cielo-inferior, #f5b36a) 100%
+  );
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  color: #fff;
+  font-size: 13px;
+  background: #0006;
+  padding: 8px 12px;
+  border-radius: 8px;
+  line-height: 1.5;
+  display: grid;
+  gap: 3px;
+  z-index: 1;
+}
+
+#control-panel {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: min(270px, calc(100vw - 36px));
+  box-sizing: border-box;
+  color: #fff;
+  background: rgb(12 17 34 / 82%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgb(0 0 0 / 25%);
+  backdrop-filter: blur(8px);
+}
+
+#control-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  width: 100%;
+  padding: 10px 14px;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+#control-toggle:hover,
+#control-toggle:focus-visible {
+  background: rgb(255 255 255 / 10%);
+  outline: none;
+}
+
+.control-arrow {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 300ms ease;
+}
+
+#control-panel.is-open .control-arrow {
+  transform: rotate(180deg);
+}
+
+#control-content {
+  max-height: 0;
+  padding: 0 14px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: max-height 350ms ease, opacity 250ms ease, transform 350ms ease, padding 350ms ease;
+}
+
+#control-panel.is-open #control-content {
+  max-height: 430px;
+  padding: 0 14px 14px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#control-panel h2 {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#control-panel section + section {
+  margin-top: 16px;
+}
+
+.ride-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+#control-content button,
+#control-content select {
+  box-sizing: border-box;
+  min-height: 36px;
+  width: 100%;
+  padding: 7px 9px;
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: 7px;
+  font: inherit;
+}
+
+#control-content button {
+  cursor: pointer;
+}
+
+#control-content button:hover,
+#control-content button:focus-visible,
+#control-content select:focus-visible {
+  background: #d76a38;
+  outline: none;
+}
+
+#control-content select {
+  color-scheme: dark;
+}
+
+.schedule-time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+#hora-actual {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+#hora {
+  display: block;
+  width: 100%;
+  margin: 0;
+  accent-color: #f2a34a;
+  cursor: pointer;
+}
+
+.schedule-labels {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0 10px;
+  color: rgb(255 255 255 / 70%);
+  font-size: 10px;
+}
+
+#reproducir-horario[aria-pressed="true"] {
+  background: #d76a38;
+}
+
+.schedule-hint {
+  margin: 7px 0 0;
+  color: rgb(255 255 255 / 65%);
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  #hud {
+    top: auto;
+    bottom: 10px;
+    max-width: calc(100vw - 36px);
+    font-size: 11px;
+  }
+
+  #control-panel {
+    width: min(270px, calc(100vw - 20px));
+  }
+
+  #control-panel.is-open #control-content {
+    max-height: 460px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #control-content,
+  .control-arrow {
+    transition: none;
+  }
+}
